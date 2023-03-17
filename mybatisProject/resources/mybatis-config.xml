@@ -37,7 +37,7 @@
 					- UNPOOLED : 사용하지 않겠다.
 			 -->
 			<dataSource type="POOLED">
-				<property name="driver" value="oracle.jdbc.OracleDriver"/>
+				<property name="driver" value="oracle.jdbc.driver.OracleDriver"/>
 				<property name="url" value="jdbc:oracle:thins:@localhost:1521:xe"/>
 				<property name="username" value="mybatis"/>
 				<property name="password" value="mybatis"/>
