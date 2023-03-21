@@ -37,7 +37,15 @@ public class LoginController extends HttpServlet {
 		m.setUserId(userId);
 		m.setUserPwd(userPwd);
 		
-		Member loginMember = new MemberServiceImpl().loginMember(m);
+		Member loginUser = new MemberServiceImpl().loginMember(m);
+		
+		if(loginUser == null) { // 로그인 실패
+	         request.setAttribute("errorMsg", "로그인 실패");
+	         request.getRequestDispatcher("WEB-INF/views/common/errorPage.jsp").forward(request, response);
+	    }else { // 로그인 성공
+	         request.getSession().setAttribute("loginUser", loginUser);
+	         response.sendRedirect(request.getContextPath());
+	    }
 		
 	}
 
