@@ -35,7 +35,7 @@ public class BoardSearchController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		request.setCharacterEncoding("utf-8");
+		//request.setCharacterEncoding("utf-8");
 		String condition = request.getParameter("condition"); // "writer" | "title" | "content"
 		String keyword = request.getParameter("keyword"); // 사용자가 입력한 키워드값
 		
@@ -57,12 +57,13 @@ public class BoardSearchController extends HttpServlet {
 		
 		PageInfo pi = Pagination.getPageInfo(searchCount, currentPage, 10, 5);
 		
-		System.out.println(pi);
-		
 		ArrayList<Board> list = bService.selectSearchList(map, pi);
 		
 		request.setAttribute("pi", pi);
 		request.setAttribute("list", list);
+		
+		request.setAttribute("condition", condition);
+		request.setAttribute("keyword", keyword);
 		
 		request.getRequestDispatcher("WEB-INF/views/board/boardListView.jsp").forward(request, response);
 		
